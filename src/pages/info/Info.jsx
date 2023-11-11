@@ -6,16 +6,14 @@ import ChartCoin from '../../layout/chart/ChartCoin'
 const Info = () => {
     const [coin, setCoin] = useState({})
     const params = useParams()
-    console.log(params);
     const fetchCoin = useCallback(() => {
         axios.get(`https://api.coingecko.com/api/v3/coins/${params.id}`)
             .then(data => setCoin(data.data))
             .catch(err => console.log(err))
-    }, [params.id])
+    }, [])
     useEffect(() => {
         fetchCoin()
-    }, [fetchCoin])
-    console.log(coin);
+    }, [])
     return (
         <div className='coin-info'>
             <div className="coin-info-left">
@@ -28,7 +26,7 @@ const Info = () => {
                 <h2>Current Price: ${coin?.market_data?.current_price.usd}</h2>
                 <h2>Markte Cap: ${coin?.market_data?.market_cap?.usd}</h2>
             </div>
-            <ChartCoin coin={coin} />
+            <ChartCoin coin={params.id} />
         </div>
     )
 }
