@@ -12,7 +12,7 @@ const ChartCoin = ({ coin }) => {
     const [days, setDays] = useState(1)
     const fetchHistoryData = () => {
         axios
-            .get(`https://api.coingecko.com/api/v3/coins/${coin.id}/market_chart?vs_currency=usd&days=${days}`)
+            .get(`https://api.coingecko.com/api/v3/coins/${coin?.id}/market_chart?vs_currency=usd&days=${days}`)
             .then(res => setHistoryData((res.data.prices)))
             .catch(err => console.log(err))
     }
